@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Application Logs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta http-equiv="refresh" content="10"> <!-- Auto-refresh every 10 seconds -->
+    <style>
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-size: 0.9rem;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .log-info { color: #0d6efd; }
+        .log-warn { color: #ffc107; }
+        .log-error { color: #dc3545; }
+        #refresh-timer {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Application Logs</h2>
+            <div>
+                <span id="refresh-timer">Auto-refresh in 10s</span>
+                <a href="/dashboard" class="btn btn-primary ms-2">Dashboard</a>
+                <a href="/admin" class="btn btn-secondary ms-2">Admin Panel</a>
+                <button class="btn btn-sm btn-outline-primary ms-2" onclick="location.reload()">Refresh Now</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5>Recent Logs (Last 100 Lines)</h5>
+            </div>
+            <div class="card-body">
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}">Error loading logs</div>
+                
+                <pre th:if="${logs}">
+                    <div th:each="line : ${logs}" class="log-entry" 
+                         th:classappend="${
+                             line.contains(' INFO ') ? 'log-info' : 
+                             line.contains(' WARN ') ? 'log-warn' : 
+                             line.contains(' ERROR ') ? 'log-error' : ''
+                         }" 
+                         th:text="${line}">Log line</div>
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer for auto-refresh
+        let secondsLeft = 10;
+        const timerElement = document.getElementById('refresh-timer');
+        
+        function updateTimer() {
+            secondsLeft--;
+            if (secondsLeft >= 0) {
+                timerElement.textContent = `Auto-refresh in ${secondsLeft}s`;
+                setTimeout(updateTimer, 1000);
+            }
+        }
+        
+        // Start the countdown
+        updateTimer();
+    </script>
+</body>
+</html>

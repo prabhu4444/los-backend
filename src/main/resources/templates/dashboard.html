@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Loan Processing Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Status indicator styles */
+        .status-applied { background-color: #f8f9fa; }
+        .status-approved_by_system, .status-approved_by_agent { background-color: #d1e7dd; }
+        .status-rejected_by_system, .status-rejected_by_agent { background-color: #f8d7da; }
+        .status-under_review, .status-pending_review { background-color: #fff3cd; }
+        
+        /* Other styling */
+        .refresh-timer {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .progress {
+            background-color: #e9ecef;
+            border-radius: 0.25rem;
+        }
+        
+        .progress-bar {
+            background-color: #198754;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            font-size: 0.8rem;
+            border-radius: 0.25rem;
+        }
+        
+        .badge.bg-success {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.4rem;
+            margin-right: 0.2rem;
+        }
+        
+        .card {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1.5rem;
+        }
+        
+        .status-summary-card {
+            transition: transform 0.2s;
+        }
+        
+        .status-summary-card:hover {
+            transform: translateY(-5px);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Header with navigation -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Loan Origination System Dashboard</h2>
+            <div>
+                <span class="refresh-timer" id="refreshTimer">Auto-refresh in 10s</span>
+                <button class="btn btn-sm btn-primary ms-2" onclick="location.reload()">
+                    <i class="bi bi-arrow-clockwise"></i> Refresh
+                </button>
+                <a href="/admin" class="btn btn-sm btn-secondary ms-2">
+                    <i class="bi bi-gear"></i> Admin Panel
+                </a>
+                <a href="/agent-dashboard" class="btn btn-sm btn-warning ms-2">
+                    <i class="bi bi-person-badge"></i> Agent Dashboard
+                </a>
+            </div>
+        </div>
+        
+        <!-- Status Summary - Clickable cards to filter by status -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5><i class="bi bi-bar-chart"></i> Loan Status Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Special "All" status card - Fixed the sum operation -->
+                            <div class="col-md-3 mb-3">
+    <a href="/dashboard" class="text-decoration-none">
+        <div class="card status-summary-card">
+            <div class="card-body text-center">
+                <h3 class="mb-0" th:text="${totalLoanCount}">0</h3>
+                <div class="text-muted">ALL STATUSES</div>
+            </div>
+        </div>
+    </a>
+</div>
+                            
+                            <!-- Status cards that filter when clicked -->
+                            <div class="col-md-3 mb-3" th:each="statusCount : ${statusCounts}">
+                                <a th:href="@{/dashboard(status=${statusCount.key})}" class="text-decoration-none">
+                                    <div class="card status-summary-card" 
+                                         th:classappend="${'status-' + statusCount.key.toString().toLowerCase()}">
+                                        <div class="card-body text-center">
+                                            <h3 class="mb-0" th:text="${statusCount.value}">0</h3>
+                                            <div class="text-muted" th:text="${statusCount.key.toString().replace('_', ' ')}">Status</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Top Customers Section -->
+        <div class="row mb-4">
+            <!-- Top Customers by Loan Amount -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5><i class="bi bi-cash-stack"></i> Top Customers by Loan Amount</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Total Amount</th>
+                                        <th>Loans</th>
+                                        <th>Approval Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="customer : ${topCustomers}">
+                                        <td th:text="${customer.name}">John Doe</td>
+                                        <td>
+                                            <span class="badge bg-success">$</span>
+                                            <span th:text="${#numbers.formatDecimal(customer.totalLoanAmount, 0, 'COMMA', 2, 'POINT')}">10,000.00</span>
+                                        </td>
+                                        <td th:text="${customer.totalLoanCount}">3</td>
+                                        <td>
+                                            <div class="progress" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" 
+                                                     th:style="'width: ' + ${customer.approvalRate} + '%'" 
+                                                     th:text="${customer.approvalRate} + '%'">
+                                                    75%
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr th:if="${topCustomers == null || topCustomers.empty}">
+                                        <td colspan="4" class="text-center">No customer data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Top Customers by Approved Loans -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5><i class="bi bi-check-circle"></i> Top Customers by Approved Loans</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4" th:each="customer, stat : ${topCustomersByApproved}">
+                                <div class="card mb-3">
+                                    <div class="card-header bg-success text-white">
+                                        <span th:text="${stat.count}">1</span>. 
+                                        <span th:text="${customer.name}">John Doe</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Approved:</span>
+                                            <strong th:text="${customer.approvedLoanCount}">5</strong>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Total:</span>
+                                            <span th:text="${customer.totalLoanCount}">7</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Total $:</span>
+                                            <span th:text="${#numbers.formatDecimal(customer.totalLoanAmount, 0, 'COMMA', 0, 'POINT')}">25K</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12" th:if="${topCustomersByApproved == null || topCustomersByApproved.empty}">
+                                <div class="alert alert-info">No approved loans data available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Simple Status Filter -->
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <h5>
+                    <i class="bi bi-funnel"></i> Current Filter: 
+                    <span th:if="${status}" th:text="${status.toString().replace('_', ' ')}">ALL</span>
+                    <span th:unless="${status}">ALL STATUSES</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <form id="filterForm" method="get" action="/dashboard" class="row align-items-end">
+                    <div class="col-md-4">
+                        <label for="status" class="form-label">Filter by Status</label>
+                        <select class="form-select" id="status" name="status">
+                            <option value="">All Statuses</option>
+                            <option th:each="statusOption : ${T(com.loanapp.los.model.enums.ApplicationStatus).values()}"
+                                    th:value="${statusOption}"
+                                    th:text="${statusOption.toString().replace('_', ' ')}"
+                                    th:selected="${status == statusOption}">APPLIED</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-filter"></i> Apply Filter
+                        </button>
+                        <a href="/dashboard" class="btn btn-secondary ms-2">
+                            <i class="bi bi-x-circle"></i> Reset
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Loans List -->
+        <div class="card">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <h5>
+                    <i class="bi bi-list-ul"></i> 
+                    <span th:if="${status}" th:text="${status.toString().replace('_', ' ') + ' Loans'}">All Loans</span>
+                    <span th:unless="${status}">All Loans</span>
+                </h5>
+                <div>
+                    <span th:text="${loans != null ? loans.size() + ' loans found' : '0 loans found'}">0 loans found</span>
+                    <a href="/api/v1/loans" class="btn btn-sm btn-outline-primary ms-2" target="_blank">API</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Applied At</th>
+                                <th>Last Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="loan : ${loans}" th:classappend="${'status-' + loan.applicationStatus.toString().toLowerCase()}">
+                                <td th:text="${loan.id}">1</td>
+                                <td th:text="${loan.customer != null ? loan.customer.name : 'Unknown'}">John Doe</td>
+                                <td th:text="${'$' + #numbers.formatDecimal(loan.loanAmount, 0, 'COMMA', 2, 'POINT')}">$10,000.00</td>
+                                <td th:text="${loan.loanType}">PERSONAL</td>
+                                <td>
+  <span class="badge" th:classappend="${
+      (loan.applicationStatus != null and (loan.applicationStatus.toString() == 'APPROVED_BY_SYSTEM' or loan.applicationStatus.toString() == 'APPROVED_BY_AGENT')) ? ' bg-success' :
+      (loan.applicationStatus != null and (loan.applicationStatus.toString() == 'REJECTED_BY_SYSTEM' or loan.applicationStatus.toString() == 'REJECTED_BY_AGENT')) ? ' bg-danger' :
+      (loan.applicationStatus != null and loan.applicationStatus.toString() == 'UNDER_REVIEW') ? ' bg-warning' : ''
+    }"
+    th:text="${loan.applicationStatus != null ? loan.applicationStatus.toString().replace('_', ' ') : 'APPLIED'}">
+    APPLIED
+  </span>
+</td>
+
+                                <td th:text="${loan.createdAt != null ? #temporals.format(loan.createdAt, 'MMM dd, yyyy HH:mm') : '-'}">Jun 09, 2025 10:00</td>
+                                <td th:text="${loan.decisionAt != null ? #temporals.format(loan.decisionAt, 'MMM dd, yyyy HH:mm') : '-'}">-</td>
+                            </tr>
+                            <tr th:if="${loans == null || loans.empty}">
+                                <td colspan="7" class="text-center">No loan applications found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="mt-4 d-flex justify-content-between">
+            <div>
+                <a href="/apply" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Submit New Loan
+                </a>
+            </div>
+            <div>
+                <a href="#top" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-up"></i> Back to Top
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Auto-refresh page every 10 seconds
+        let secondsLeft = 10;
+        
+        function updateTimer() {
+            const timerElement = document.getElementById('refreshTimer');
+            if (timerElement) {
+                timerElement.textContent = `Auto-refresh in ${secondsLeft}s`;
+                secondsLeft--;
+                
+                if (secondsLeft < 0) {
+                    location.reload();
+                } else {
+                    setTimeout(updateTimer, 1000);
+                }
+            }
+        }
+        
+        // Initialize timer
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTimer();
+            
+            // Make status card rows clickable to filter
+            document.querySelectorAll('.status-summary-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // The link will handle navigation
+                });
+            });
+        });
+    </script>
+</body>
+</html>
