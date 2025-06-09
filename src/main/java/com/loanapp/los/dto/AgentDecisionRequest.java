@@ -9,5 +9,5 @@ public class AgentDecisionRequest {
     @NotNull(message = "Decision is required")
     private String decision;  // "APPROVE" or "REJECT"
     
-    private String comments;  // Optional comments about the decision
+    private String comments;  
 }

@@ -136,7 +136,6 @@ public class AdminController {
     
     @GetMapping("/notifications")
 public String viewNotifications(Model model) {
-    // Return an empty list - we'll implement actual notification storage later
     List<NotificationDTO> notifications = new ArrayList<>();
     
     model.addAttribute("notifications", notifications);

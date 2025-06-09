@@ -25,7 +25,7 @@ public class Customer {
     private String email;
     
     @Column(name = "identity_number", unique = true)
-    private String identityNumber;  // National ID, SSN, etc.
+    private String identityNumber;  // National ID
     
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -46,7 +46,7 @@ public class Customer {
     
     @PrePersist
     protected void onCreate() {
-        createdAt = java.time.LocalDateTime.now(); // Change from created_at to createdAt
+        createdAt = java.time.LocalDateTime.now(); 
     }
     
     @PreUpdate

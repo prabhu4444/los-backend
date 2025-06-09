@@ -25,7 +25,6 @@ public class Loan {
     @JsonBackReference
     private Customer customer;
     
-    // We'll keep these fields for convenience in queries, but they're references to the Customer entity
     @Column(name = "customer_name", insertable = false, updatable = false)
     private String customerName;
     
@@ -51,7 +50,6 @@ public class Loan {
     
     private LocalDateTime decisionAt;
     
-    // Optional: Additional loan information
     private String purpose;
     private Integer termMonths;
     private BigDecimal interestRate;

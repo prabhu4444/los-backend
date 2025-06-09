@@ -17,7 +17,6 @@ public class TopCustomerDTO {
     private int totalLoanCount;
     private int approvedLoanCount;
     
-    // Calculate approval rate (percentage)
     public int getApprovalRate() {
         if (totalLoanCount == 0) return 0;
         return (int) Math.round((double) approvedLoanCount / totalLoanCount * 100);
