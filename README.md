@@ -50,6 +50,63 @@ This Loan Origination System provides a complete solution for financial institut
 - **Styling**: Bootstrap 5
 - **Build Tool**: Maven
 
+## Project Setup
+
+### Prerequisites
+
+- Java 17 or higher
+- PostgreSQL 13 or higher
+- Maven 3.8+
+
+### Database Setup
+
+1. Create a PostgreSQL database:
+```sql
+CREATE DATABASE los_db;
+CREATE USER prabhu WITH PASSWORD 'postgres';
+GRANT ALL PRIVILEGES ON DATABASE los_db TO prabhu;
+
+2. Verify your PostgreSQL connection:
+- Database URL: jdbc:postgresql://localhost:5432/los_db
+- Username: prabhu
+- Password: postgres
+
+3. Configuration
+The application is configured using application.properties:
+
+# Server Port
+server.port=8080
+
+# Database Configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/los_db
+spring.datasource.username=prabhu
+spring.datasource.password=postgres
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# Hibernate / JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+# Logging configuration
+logging.file.name=spring-boot-app.log
+logging.level.root=INFO
+logging.level.com.loanapp.los=DEBUG
+
+You can modify these settings based on your environment.
+
+4. Building the Project
+# Clone the repository
+git clone https://github.com/yourusername/los-backend.git
+cd los-backend
+
+# Build the project
+mvn clean install
+
+# Run the application
+mvn spring-boot:run
+
 ```
 src/
 ├── main/

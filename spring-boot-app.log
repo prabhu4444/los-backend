@@ -6464,3 +6464,112 @@ java.lang.IllegalArgumentException: Operand must not be null
 2025-06-09 22:28:46 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-06-09 22:28:46 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-06-09 22:28:46 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-09 23:32:02 [restartedMain] INFO  c.l.l.LoanOriginationSystemApplication - Starting LoanOriginationSystemApplication using Java 21.0.2 with PID 25951 (/Users/prabhu/Desktop/los-backend/target/classes started by prabhu in /Users/prabhu/Desktop/los-backend)
+2025-06-09 23:32:02 [restartedMain] DEBUG c.l.l.LoanOriginationSystemApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-09 23:32:02 [restartedMain] INFO  c.l.l.LoanOriginationSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-09 23:32:02 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-09 23:32:02 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-09 23:32:06 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-09 23:32:06 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 344 ms. Found 4 JPA repository interfaces.
+2025-06-09 23:32:11 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-09 23:32:11 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-09 23:32:11 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-09 23:32:11 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-09 23:32:11 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 9100 ms
+2025-06-09 23:32:12 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-09 23:32:12 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.15.Final
+2025-06-09 23:32:12 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-09 23:32:13 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-09 23:32:13 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-09 23:32:14 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1091461a
+2025-06-09 23:32:14 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-09 23:32:14 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-09 23:32:14 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.18
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-09 23:32:19 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-09 23:32:21 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-09 23:32:22 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-06-09 23:32:26 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-09 23:32:29 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-09 23:32:30 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-09 23:32:30 [restartedMain] INFO  c.l.l.LoanOriginationSystemApplication - Started LoanOriginationSystemApplication in 33.016 seconds (process running for 34.39)
+2025-06-09 23:32:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:32:46 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-09 23:32:46 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-09 23:32:46 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 34 ms
+2025-06-09 23:33:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 1 pending loan applications to process
+2025-06-09 23:33:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Processing loan 16 with a simulated delay of 4 seconds
+2025-06-09 23:33:04 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - About to apply loan rules for loan 16 of type PERSONAL with amount 10000.00
+2025-06-09 23:33:04 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Decision from loan rules for loan 16: APPROVED_BY_SYSTEM
+2025-06-09 23:33:04 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Loan 16 processed with decision: APPROVED_BY_SYSTEM
+2025-06-09 23:33:04 [scheduling-1] INFO  c.l.l.s.MockNotificationService - NOTIFICATION: SMS sent to customer John Doe at 1234567890 about loan approval 16
+2025-06-09 23:33:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:34:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:34:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:35:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:35:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:36:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:36:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:37:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:37:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:38:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:38:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 1 pending loan applications to process
+2025-06-09 23:38:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Processing loan 17 with a simulated delay of 5 seconds
+2025-06-09 23:38:35 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - About to apply loan rules for loan 17 of type BUSINESS with amount 10000.00
+2025-06-09 23:38:35 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Decision from loan rules for loan 17: PENDING_REVIEW
+2025-06-09 23:38:35 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Loan 17 marked as PENDING_REVIEW for agent assignment
+2025-06-09 23:38:35 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 1 loans that need agent assignment
+2025-06-09 23:38:35 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 4 available agents for assignment
+2025-06-09 23:38:35 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Available agent: ID=2, Name=Agent 2	, Email=agent2@gmail.com
+2025-06-09 23:38:35 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Available agent: ID=1, Name=Agent 1, Email=agent1@gmail.com
+2025-06-09 23:38:35 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Available agent: ID=4, Name=agent 4, Email=agent4@gmail.com
+2025-06-09 23:38:35 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Available agent: ID=3, Name=agent 3, Email=agent3@gmail.com
+2025-06-09 23:38:35 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Loan 17 assigned to agent Agent 2	. Agent is now unavailable until decision.
+2025-06-09 23:38:55 [http-nio-8080-exec-7] INFO  c.l.l.s.MockNotificationService - NOTIFICATION: SMS sent to customer John Doe at 1234567890 about agent decision on loan 17: APPROVED_BY_AGENT
+2025-06-09 23:39:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:39:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:40:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:40:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:41:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:41:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:42:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:42:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:43:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:43:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:44:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:44:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:45:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:45:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:46:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:46:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:47:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 1 pending loan applications to process
+2025-06-09 23:47:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Processing loan 18 with a simulated delay of 5 seconds
+2025-06-09 23:47:05 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - About to apply loan rules for loan 18 of type BUSINESS with amount 10000.00
+2025-06-09 23:47:05 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Decision from loan rules for loan 18: PENDING_REVIEW
+2025-06-09 23:47:05 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Loan 18 marked as PENDING_REVIEW for agent assignment
+2025-06-09 23:47:05 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 1 loans that need agent assignment
+2025-06-09 23:47:05 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 4 available agents for assignment
+2025-06-09 23:47:05 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Available agent: ID=1, Name=Agent 1, Email=agent1@gmail.com
+2025-06-09 23:47:05 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Available agent: ID=4, Name=agent 4, Email=agent4@gmail.com
+2025-06-09 23:47:05 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Available agent: ID=3, Name=agent 3, Email=agent3@gmail.com
+2025-06-09 23:47:05 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Available agent: ID=2, Name=Agent 2	, Email=agent2@gmail.com
+2025-06-09 23:47:05 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Loan 18 assigned to agent Agent 1. Agent is now unavailable until decision.
+2025-06-09 23:47:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:48:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:48:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:49:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:49:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:50:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:50:30 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:51:00 [scheduling-1] INFO  c.l.l.service.LoanProcessingService - Found 0 pending loan applications to process
+2025-06-09 23:51:03 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-09 23:51:03 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-09 23:51:03 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-09 23:51:03 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-09 23:51:03 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
