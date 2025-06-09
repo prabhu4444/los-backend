@@ -61,11 +61,9 @@ src/
 │   │               ├── config/
 │   │               ├── controller/
 │   │               ├── dto/
-│   │               ├── exception/
 │   │               ├── model/
 │   │               ├── repository/
-│   │               ├── service/
-│   │               └── util/
+│   │               ├── service/     
 │   └── resources/
 │       ├── application.properties
 │       ├── static/
