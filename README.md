@@ -94,9 +94,13 @@ logging.file.name=spring-boot-app.log
 logging.level.root=INFO
 logging.level.com.loanapp.los=DEBUG
 
+```
+
 You can modify these settings based on your environment.
 
 4. Building the Project
+
+```
 # Clone the repository
 git clone https://github.com/yourusername/los-backend.git
 cd los-backend
@@ -106,8 +110,9 @@ mvn clean install
 
 # Run the application
 mvn spring-boot:run
-
 ```
+
+
 src/
 ├── main/
 │   ├── java/
